@@ -1,0 +1,10 @@
+{
+  "name": "air-power-platform",
+  "version": "1.0.0",
+  "description": "AIR POWER - Full Stack Platform Root",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix backend install",
+    "start": "npm --prefix backend start"
+  }
+}
