@@ -67,6 +67,26 @@ async function initializeData() {
 
 initializeData();
 
+// Root API Welcome endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: 'AIR POWER - Fleet Intelligence & Predictive Maintenance API Gateway',
+    status: 'ONLINE',
+    version: '1.0.0',
+    documentation: 'SIH 2024 / Aerospace Analytics Prototype',
+    endpoints: {
+      health: '/api/health',
+      kpiSummary: '/api/kpi/summary',
+      fleet: '/api/fleet',
+      predictive: '/api/predictive/fleet-status',
+      telemetry: '/api/telemetry/live',
+      workOrders: '/api/work-orders',
+      spareParts: '/api/spare-parts',
+      auditLogs: '/api/audit-logs'
+    }
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
