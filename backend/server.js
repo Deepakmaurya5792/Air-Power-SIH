@@ -28,12 +28,20 @@ let auditLogs = [
   { id: 'AUD-002', action: 'ML_MODEL_SYNC', details: 'Predictive RF model v1.2.0 synchronized with inference gateway', timestamp: new Date(Date.now() - 1800000).toISOString(), user: 'AI Pipeline' }
 ];
 
+function getDatasetFilePath(fileName) {
+  const rootPath = path.join(__dirname, '..', 'DATASET', 'air_power_synthetic_dataset', fileName);
+  if (fs.existsSync(rootPath)) return rootPath;
+  const localPath = path.join(__dirname, 'DATASET', 'air_power_synthetic_dataset', fileName);
+  if (fs.existsSync(localPath)) return localPath;
+  return rootPath;
+}
+
 function loadCsv(fileName) {
   return new Promise((resolve, reject) => {
     const results = [];
-    const filePath = path.join(DATASET_DIR, fileName);
+    const filePath = getDatasetFilePath(fileName);
     if (!fs.existsSync(filePath)) {
-      console.warn(`Dataset file not found: ${filePath}`);
+      console.warn(`[DATA WARNING] Dataset file not found at: ${filePath}`);
       return resolve([]);
     }
     fs.createReadStream(filePath)

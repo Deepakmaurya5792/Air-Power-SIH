@@ -1,14 +1,15 @@
 {
-  "name": "backend",
+  "name": "air-power-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
-  "keywords": [],
+  "keywords": ["aerospace", "predictive-maintenance", "fleet-intelligence"],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "AIR POWER - Fleet Intelligence Backend Gateway",
   "dependencies": {
     "cors": "^2.8.6",
     "csv-parser": "^3.2.1",

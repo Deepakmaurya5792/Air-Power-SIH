@@ -1,0 +1,41 @@
+part_id,part_name,compatible_component_demo,stock_quantity,reorder_level,supplier_lead_time_days,unit_cost_demo_inr,stock_status
+PART-001,Filter Assembly,CMP-021,7,11,25,133320,Reorder
+PART-002,Hydraulic Seal,CMP-054,11,8,25,208717,In Stock
+PART-003,Brake Assembly,CMP-037,11,8,34,234028,In Stock
+PART-004,Hydraulic Seal,CMP-002,8,11,40,74983,Reorder
+PART-005,Pressure Sensor,CMP-041,6,6,10,51186,Reorder
+PART-006,Filter Assembly,CMP-078,13,5,42,47814,In Stock
+PART-007,Pump Module,CMP-027,25,8,18,167775,In Stock
+PART-008,Bearing Unit,CMP-021,2,10,22,139088,Reorder
+PART-009,Hydraulic Seal,CMP-041,3,5,22,121135,Reorder
+PART-010,Brake Assembly,CMP-007,16,11,16,13531,In Stock
+PART-011,Pressure Sensor,CMP-031,23,11,19,63602,In Stock
+PART-012,Electrical Connector,CMP-036,6,7,35,124400,Reorder
+PART-013,Valve Unit,CMP-033,9,11,3,84644,Reorder
+PART-014,Filter Assembly,CMP-043,5,6,8,239888,Reorder
+PART-015,Bearing Unit,CMP-039,25,10,23,125744,In Stock
+PART-016,Hydraulic Seal,CMP-038,10,7,19,163927,In Stock
+PART-017,Brake Assembly,CMP-026,9,10,31,226349,Reorder
+PART-018,Hydraulic Seal,CMP-062,21,11,2,128990,In Stock
+PART-019,Brake Assembly,CMP-028,3,4,15,23907,Reorder
+PART-020,Pump Module,CMP-010,10,9,38,53064,In Stock
+PART-021,Brake Assembly,CMP-055,10,6,13,70152,In Stock
+PART-022,Brake Assembly,CMP-065,22,8,4,117565,In Stock
+PART-023,Electrical Connector,CMP-001,5,9,12,8787,Reorder
+PART-024,Valve Unit,CMP-039,29,4,25,139799,In Stock
+PART-025,Brake Assembly,CMP-008,11,9,27,192660,In Stock
+PART-026,Hydraulic Seal,CMP-007,28,9,44,127908,In Stock
+PART-027,Filter Assembly,CMP-062,4,8,43,197275,Reorder
+PART-028,Pressure Sensor,CMP-079,6,6,16,138694,Reorder
+PART-029,Bearing Unit,CMP-003,2,6,7,215651,Reorder
+PART-030,Bearing Unit,CMP-072,27,11,36,241803,In Stock
+PART-031,Electrical Connector,CMP-021,19,11,40,172984,In Stock
+PART-032,Electrical Connector,CMP-026,25,8,7,52384,In Stock
+PART-033,Pressure Sensor,CMP-037,2,10,39,190932,Reorder
+PART-034,Electrical Connector,CMP-041,0,8,7,102561,Reorder
+PART-035,Pump Module,CMP-013,15,8,29,222131,In Stock
+PART-036,Brake Assembly,CMP-020,29,11,11,41383,In Stock
+PART-037,Bearing Unit,CMP-038,10,4,33,147710,In Stock
+PART-038,Hydraulic Seal,CMP-041,28,10,36,105858,In Stock
+PART-039,Hydraulic Seal,CMP-035,25,5,37,151659,In Stock
+PART-040,Brake Assembly,CMP-020,22,7,28,28500,In Stock

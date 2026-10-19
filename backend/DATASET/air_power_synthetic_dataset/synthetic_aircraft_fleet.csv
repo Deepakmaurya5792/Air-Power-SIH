@@ -1,0 +1,151 @@
+aircraft_id,aircraft_type,status,flight_hours_total,last_maintenance_date,next_inspection_due_days,assigned_maintenance_unit,mission_ready
+AIR-001,Transport (demo),Available,11800,2025-10-05,28,Unit-C (demo),1
+AIR-002,Helicopter (demo),Available,4108,2026-07-27,86,Unit-B (demo),1
+AIR-003,Fighter (demo),Under Maintenance,13008,2026-05-04,50,Unit-C (demo),0
+AIR-004,Helicopter (demo),Under Maintenance,9355,2026-01-19,0,Unit-C (demo),0
+AIR-005,Transport (demo),Available,14825,2025-09-19,104,Unit-C (demo),1
+AIR-006,Transport (demo),Available,12281,2026-02-03,3,Unit-B (demo),1
+AIR-007,Fighter (demo),Inspection Due,9515,2025-12-17,78,Unit-B (demo),0
+AIR-008,Fighter (demo),Available,2674,2026-04-17,-4,Unit-C (demo),1
+AIR-009,Trainer (demo),Inspection Due,14285,2026-08-27,43,Unit-B (demo),0
+AIR-010,Trainer (demo),Available,8301,2025-12-18,75,Unit-A (demo),1
+AIR-011,Trainer (demo),Available,6373,2026-05-13,11,Unit-B (demo),1
+AIR-012,Helicopter (demo),Awaiting Parts,3292,2026-08-08,11,Unit-C (demo),0
+AIR-013,Trainer (demo),Awaiting Parts,7796,2026-04-01,75,Unit-B (demo),0
+AIR-014,Helicopter (demo),Available,8375,2026-09-17,37,Unit-B (demo),1
+AIR-015,Helicopter (demo),Available,859,2026-01-19,25,Unit-A (demo),1
+AIR-016,Trainer (demo),Available,9702,2026-02-06,105,Unit-A (demo),1
+AIR-017,Trainer (demo),Inspection Due,815,2026-04-24,28,Unit-B (demo),0
+AIR-018,Trainer (demo),Awaiting Parts,12199,2026-07-06,31,Unit-B (demo),0
+AIR-019,Trainer (demo),Under Maintenance,7789,2026-04-12,93,Unit-C (demo),0
+AIR-020,Fighter (demo),Under Maintenance,7576,2025-11-04,11,Unit-B (demo),0
+AIR-021,Trainer (demo),Available,6165,2026-06-26,48,Unit-C (demo),1
+AIR-022,Transport (demo),Available,13970,2026-03-05,77,Unit-C (demo),1
+AIR-023,Helicopter (demo),Under Maintenance,11271,2026-03-13,-1,Unit-C (demo),0
+AIR-024,Helicopter (demo),Available,13688,2026-08-06,10,Unit-A (demo),1
+AIR-025,Transport (demo),Available,12424,2026-03-20,109,Unit-C (demo),1
+AIR-026,Helicopter (demo),Available,12289,2026-06-27,84,Unit-B (demo),1
+AIR-027,Helicopter (demo),Inspection Due,12540,2025-11-16,33,Unit-B (demo),0
+AIR-028,Trainer (demo),Inspection Due,8416,2026-02-22,47,Unit-C (demo),0
+AIR-029,Trainer (demo),Available,4927,2026-03-08,38,Unit-C (demo),1
+AIR-030,Transport (demo),Available,3003,2025-10-12,111,Unit-C (demo),1
+AIR-031,Fighter (demo),Under Maintenance,4240,2026-05-20,86,Unit-C (demo),0
+AIR-032,Trainer (demo),Available,9832,2026-05-19,20,Unit-A (demo),1
+AIR-033,Trainer (demo),Available,6429,2026-07-15,1,Unit-B (demo),1
+AIR-034,Transport (demo),Under Maintenance,10648,2026-09-25,53,Unit-B (demo),0
+AIR-035,Transport (demo),Available,8664,2025-11-28,94,Unit-A (demo),1
+AIR-036,Transport (demo),Awaiting Parts,7520,2026-01-16,100,Unit-B (demo),0
+AIR-037,Transport (demo),Available,3667,2026-01-21,3,Unit-A (demo),1
+AIR-038,Transport (demo),Awaiting Parts,14510,2026-03-11,74,Unit-B (demo),0
+AIR-039,Transport (demo),Available,8148,2026-01-31,49,Unit-B (demo),1
+AIR-040,Transport (demo),Available,1636,2025-12-22,16,Unit-B (demo),1
+AIR-041,Fighter (demo),Available,5988,2026-09-17,60,Unit-C (demo),1
+AIR-042,Helicopter (demo),Inspection Due,12842,2026-04-01,-1,Unit-B (demo),0
+AIR-043,Transport (demo),Available,4908,2025-11-15,-3,Unit-B (demo),1
+AIR-044,Fighter (demo),Available,13576,2026-05-12,62,Unit-B (demo),1
+AIR-045,Helicopter (demo),Under Maintenance,3985,2026-03-08,11,Unit-A (demo),0
+AIR-046,Transport (demo),Awaiting Parts,9496,2026-04-30,63,Unit-A (demo),0
+AIR-047,Fighter (demo),Inspection Due,7814,2025-11-14,117,Unit-B (demo),0
+AIR-048,Helicopter (demo),Under Maintenance,13338,2025-11-29,17,Unit-C (demo),0
+AIR-049,Helicopter (demo),Available,4341,2025-12-06,83,Unit-B (demo),1
+AIR-050,Fighter (demo),Available,3339,2026-05-16,92,Unit-C (demo),1
+AIR-051,Trainer (demo),Available,3700,2025-10-03,6,Unit-A (demo),1
+AIR-052,Helicopter (demo),Available,5309,2026-04-16,20,Unit-A (demo),1
+AIR-053,Fighter (demo),Inspection Due,4167,2025-12-28,17,Unit-C (demo),0
+AIR-054,Transport (demo),Inspection Due,2884,2026-07-11,116,Unit-A (demo),0
+AIR-055,Trainer (demo),Available,8762,2026-08-07,66,Unit-C (demo),1
+AIR-056,Fighter (demo),Available,4840,2026-10-13,82,Unit-B (demo),1
+AIR-057,Transport (demo),Available,2510,2026-06-29,5,Unit-A (demo),1
+AIR-058,Fighter (demo),Available,2647,2026-07-26,68,Unit-C (demo),1
+AIR-059,Fighter (demo),Available,1898,2025-09-29,62,Unit-C (demo),1
+AIR-060,Helicopter (demo),Under Maintenance,2624,2025-11-30,75,Unit-B (demo),0
+AIR-061,Helicopter (demo),Inspection Due,14132,2025-09-20,48,Unit-C (demo),0
+AIR-062,Helicopter (demo),Available,655,2025-10-18,-10,Unit-A (demo),1
+AIR-063,Helicopter (demo),Inspection Due,14312,2026-03-05,76,Unit-C (demo),0
+AIR-064,Helicopter (demo),Inspection Due,11221,2025-12-27,36,Unit-B (demo),0
+AIR-065,Transport (demo),Awaiting Parts,4388,2026-07-26,24,Unit-C (demo),0
+AIR-066,Helicopter (demo),Available,4671,2026-04-27,102,Unit-A (demo),1
+AIR-067,Trainer (demo),Available,1558,2025-11-23,12,Unit-B (demo),1
+AIR-068,Transport (demo),Available,9243,2026-01-20,109,Unit-A (demo),1
+AIR-069,Fighter (demo),Under Maintenance,1291,2025-10-01,53,Unit-C (demo),0
+AIR-070,Transport (demo),Available,10478,2026-08-30,14,Unit-A (demo),1
+AIR-071,Helicopter (demo),Available,6973,2026-04-15,99,Unit-B (demo),1
+AIR-072,Transport (demo),Inspection Due,10132,2026-09-12,106,Unit-C (demo),0
+AIR-073,Transport (demo),Available,14314,2026-08-16,113,Unit-A (demo),1
+AIR-074,Fighter (demo),Available,13974,2026-08-05,38,Unit-C (demo),1
+AIR-075,Trainer (demo),Available,3024,2025-12-31,110,Unit-B (demo),1
+AIR-076,Fighter (demo),Available,10852,2026-02-19,80,Unit-A (demo),1
+AIR-077,Trainer (demo),Available,8391,2026-04-10,41,Unit-A (demo),1
+AIR-078,Helicopter (demo),Available,9315,2026-05-04,103,Unit-A (demo),1
+AIR-079,Helicopter (demo),Available,1348,2025-11-19,56,Unit-A (demo),1
+AIR-080,Helicopter (demo),Available,2158,2026-08-06,18,Unit-A (demo),1
+AIR-081,Fighter (demo),Under Maintenance,2670,2026-05-19,87,Unit-B (demo),0
+AIR-082,Fighter (demo),Awaiting Parts,514,2026-03-15,7,Unit-B (demo),0
+AIR-083,Transport (demo),Available,1657,2026-05-14,28,Unit-B (demo),1
+AIR-084,Transport (demo),Under Maintenance,10932,2025-10-20,51,Unit-A (demo),0
+AIR-085,Trainer (demo),Available,4979,2026-05-15,67,Unit-C (demo),1
+AIR-086,Trainer (demo),Available,13038,2026-03-13,70,Unit-C (demo),1
+AIR-087,Fighter (demo),Available,11784,2026-02-24,96,Unit-C (demo),1
+AIR-088,Fighter (demo),Under Maintenance,9062,2026-03-26,63,Unit-C (demo),0
+AIR-089,Trainer (demo),Under Maintenance,5636,2026-08-02,56,Unit-B (demo),0
+AIR-090,Trainer (demo),Available,14862,2026-05-30,78,Unit-C (demo),1
+AIR-091,Transport (demo),Available,9558,2025-09-18,56,Unit-B (demo),1
+AIR-092,Helicopter (demo),Available,13342,2026-10-14,109,Unit-A (demo),1
+AIR-093,Fighter (demo),Awaiting Parts,4199,2025-11-19,41,Unit-B (demo),0
+AIR-094,Trainer (demo),Available,14094,2026-07-12,4,Unit-B (demo),1
+AIR-095,Trainer (demo),Inspection Due,4337,2026-02-15,70,Unit-A (demo),0
+AIR-096,Transport (demo),Available,11016,2026-06-09,115,Unit-A (demo),1
+AIR-097,Fighter (demo),Available,14959,2026-08-16,16,Unit-A (demo),1
+AIR-098,Trainer (demo),Available,14460,2026-04-20,10,Unit-B (demo),1
+AIR-099,Transport (demo),Available,5551,2026-04-23,45,Unit-C (demo),1
+AIR-100,Transport (demo),Available,9086,2025-10-16,111,Unit-A (demo),1
+AIR-101,Fighter (demo),Available,10919,2026-08-07,26,Unit-B (demo),1
+AIR-102,Helicopter (demo),Available,7138,2026-06-21,88,Unit-A (demo),1
+AIR-103,Trainer (demo),Available,7645,2025-11-17,25,Unit-B (demo),1
+AIR-104,Helicopter (demo),Available,877,2026-06-16,95,Unit-A (demo),1
+AIR-105,Trainer (demo),Available,1447,2026-10-12,23,Unit-A (demo),1
+AIR-106,Helicopter (demo),Under Maintenance,13842,2026-06-12,103,Unit-B (demo),0
+AIR-107,Helicopter (demo),Under Maintenance,1332,2026-04-20,54,Unit-C (demo),0
+AIR-108,Helicopter (demo),Available,6043,2026-07-25,4,Unit-C (demo),1
+AIR-109,Trainer (demo),Available,11572,2026-08-14,112,Unit-C (demo),1
+AIR-110,Helicopter (demo),Inspection Due,1635,2026-04-29,76,Unit-C (demo),0
+AIR-111,Helicopter (demo),Inspection Due,13077,2026-10-06,-10,Unit-B (demo),0
+AIR-112,Helicopter (demo),Inspection Due,10742,2025-12-24,34,Unit-C (demo),0
+AIR-113,Trainer (demo),Available,6619,2026-05-14,105,Unit-B (demo),1
+AIR-114,Helicopter (demo),Available,5128,2025-12-29,39,Unit-C (demo),1
+AIR-115,Transport (demo),Available,1570,2026-04-05,114,Unit-A (demo),1
+AIR-116,Helicopter (demo),Under Maintenance,8248,2026-10-17,58,Unit-B (demo),0
+AIR-117,Trainer (demo),Available,11555,2025-09-20,5,Unit-C (demo),1
+AIR-118,Helicopter (demo),Available,14947,2025-12-16,67,Unit-C (demo),1
+AIR-119,Helicopter (demo),Available,4220,2026-09-20,-2,Unit-A (demo),1
+AIR-120,Trainer (demo),Under Maintenance,9892,2026-05-15,81,Unit-A (demo),0
+AIR-121,Transport (demo),Available,611,2026-01-31,0,Unit-C (demo),1
+AIR-122,Trainer (demo),Available,570,2026-10-11,69,Unit-B (demo),1
+AIR-123,Helicopter (demo),Available,3009,2026-07-31,10,Unit-C (demo),1
+AIR-124,Fighter (demo),Inspection Due,1023,2025-09-18,19,Unit-B (demo),0
+AIR-125,Fighter (demo),Under Maintenance,4673,2026-01-01,15,Unit-C (demo),0
+AIR-126,Trainer (demo),Available,8779,2025-11-04,37,Unit-C (demo),1
+AIR-127,Transport (demo),Available,2615,2025-10-25,68,Unit-B (demo),1
+AIR-128,Trainer (demo),Under Maintenance,951,2026-05-29,101,Unit-B (demo),0
+AIR-129,Helicopter (demo),Under Maintenance,5832,2025-12-01,74,Unit-A (demo),0
+AIR-130,Helicopter (demo),Available,292,2026-01-19,82,Unit-C (demo),1
+AIR-131,Helicopter (demo),Available,9449,2026-02-14,100,Unit-B (demo),1
+AIR-132,Helicopter (demo),Under Maintenance,4954,2026-02-06,49,Unit-A (demo),0
+AIR-133,Trainer (demo),Awaiting Parts,11674,2026-08-01,2,Unit-A (demo),0
+AIR-134,Transport (demo),Available,1039,2025-09-20,20,Unit-C (demo),1
+AIR-135,Helicopter (demo),Available,5289,2026-08-18,118,Unit-B (demo),1
+AIR-136,Transport (demo),Under Maintenance,12883,2026-08-07,98,Unit-A (demo),0
+AIR-137,Helicopter (demo),Available,5493,2025-10-27,119,Unit-C (demo),1
+AIR-138,Transport (demo),Available,5721,2026-07-25,22,Unit-A (demo),1
+AIR-139,Fighter (demo),Inspection Due,676,2026-09-21,9,Unit-C (demo),0
+AIR-140,Trainer (demo),Available,7302,2026-01-24,107,Unit-B (demo),1
+AIR-141,Trainer (demo),Under Maintenance,10645,2026-06-17,119,Unit-C (demo),0
+AIR-142,Helicopter (demo),Available,11430,2026-09-19,47,Unit-A (demo),1
+AIR-143,Helicopter (demo),Available,2534,2026-08-04,117,Unit-C (demo),1
+AIR-144,Fighter (demo),Available,5099,2025-11-25,76,Unit-B (demo),1
+AIR-145,Helicopter (demo),Available,1258,2026-08-19,99,Unit-C (demo),1
+AIR-146,Trainer (demo),Available,4974,2026-07-25,18,Unit-A (demo),1
+AIR-147,Fighter (demo),Available,13642,2026-02-01,64,Unit-A (demo),1
+AIR-148,Helicopter (demo),Inspection Due,4175,2025-12-16,9,Unit-C (demo),0
+AIR-149,Fighter (demo),Awaiting Parts,7577,2026-03-09,88,Unit-C (demo),0
+AIR-150,Helicopter (demo),Available,14650,2026-08-18,20,Unit-C (demo),1
