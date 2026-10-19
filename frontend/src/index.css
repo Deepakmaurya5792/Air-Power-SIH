@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8FAFC;
+    --bg-surface: #F1F5F9;
+    --border-tech: rgba(14, 165, 233, 0.25);
+    --border-tech-glow: rgba(14, 165, 233, 0.5);
+    --accent-cyan: #0284C7;
+    --accent-blue: #2563EB;
+    --accent-ice: #F0F9FF;
+    --accent-amber: #D97706;
+    --accent-red: #DC2626;
+    --accent-emerald: #059669;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0F172A;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Space Grotesk", Inter, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    border: none;
+    display: block;
+    background: transparent;
+  }
+
+  /* Sleek aerospace light scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0284C7;
+  }
+}
+
+/* Technical HUD utility classes in White Theme */
+.tech-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(14, 165, 233, 0.22);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 0 1px 1px rgba(14, 165, 233, 0.08);
+}
+
+.tech-panel-interactive {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tech-panel-interactive:hover {
+  border-color: rgba(14, 165, 233, 0.55);
+  box-shadow: 0 10px 30px -3px rgba(14, 165, 233, 0.15), 0 0 16px rgba(14, 165, 233, 0.12);
+  transform: translateY(-2px);
+}
+
+.tech-glow-text {
+  text-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+}
+
+/* Full-Screen Spacecraft Patrol Animations */
+@keyframes flightPatrolAlpha {
+  0% {
+    transform: translate(0vw, 0vh) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(-15vw, 6vh) scale(1.03) rotate(-1.5deg);
+  }
+  50% {
+    transform: translate(-30vw, -4vh) scale(0.97) rotate(0.8deg);
+  }
+  75% {
+    transform: translate(-12vw, -10vh) scale(1.02) rotate(1.2deg);
+  }
+  100% {
+    transform: translate(0vw, 0vh) scale(1) rotate(0deg);
+  }
+}
+
+.animate-flight-alpha {
+  animation: flightPatrolAlpha 26s ease-in-out infinite;
+}
+
+@keyframes flightPatrolBeta {
+  0% {
+    transform: translate(0vw, 0vh) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(16vw, -8vh) scale(1.04) rotate(1.8deg);
+  }
+  50% {
+    transform: translate(32vw, 5vh) scale(0.96) rotate(-1.2deg);
+  }
+  75% {
+    transform: translate(14vw, 10vh) scale(1.01) rotate(0.8deg);
+  }
+  100% {
+    transform: translate(0vw, 0vh) scale(1) rotate(0deg);
+  }
+}
+
+.animate-flight-beta {
+  animation: flightPatrolBeta 32s ease-in-out infinite;
+}
+
+@keyframes plasmaThruster {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.8));
+  }
+  50% {
+    opacity: 0.45;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+  }
+}
+
+.animate-plasma-thrust {
+  animation: plasmaThruster 1.8s ease-in-out infinite;
+}
+
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-radar {
+  animation: radar-sweep 7s linear infinite;
+}
+
+@keyframes hud-scanline {
+  0% { top: 0%; opacity: 0.8; }
+  50% { opacity: 0.3; }
+  100% { top: 100%; opacity: 0.8; }
+}
+
+.animate-hud-scan {
+  animation: hud-scanline 4s linear infinite;
+}

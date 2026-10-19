@@ -1,0 +1,51 @@
+{
+  "model_version": "v1.2.0-RF-Ensemble",
+  "algorithm": "RandomForestClassifier",
+  "sample_count": 4000,
+  "test_size": 800,
+  "accuracy": 0.8462,
+  "precision": 0.6723,
+  "recall": 0.6467,
+  "f1_score": 0.6593,
+  "roc_auc": 0.9004,
+  "confusion_matrix": [
+    [
+      558,
+      58
+    ],
+    [
+      65,
+      119
+    ]
+  ],
+  "feature_columns": [
+    "flight_hours",
+    "engine_temperature_c",
+    "oil_pressure_kpa",
+    "vibration_mm_s",
+    "fuel_flow_kg_h",
+    "hydraulic_pressure_psi",
+    "brake_temperature_c",
+    "component_age_days",
+    "previous_failures",
+    "maintenance_count",
+    "days_since_maintenance",
+    "health_index"
+  ],
+  "feature_importances": {
+    "component_age_days": 0.42654247583836985,
+    "engine_temperature_c": 0.10132888770892155,
+    "health_index": 0.08547465096043858,
+    "flight_hours": 0.07880661015952667,
+    "vibration_mm_s": 0.05145477258279364,
+    "oil_pressure_kpa": 0.04921834068076508,
+    "days_since_maintenance": 0.04576121279378066,
+    "hydraulic_pressure_psi": 0.042556494000866356,
+    "brake_temperature_c": 0.04226192345043181,
+    "fuel_flow_kg_h": 0.03792185274885687,
+    "maintenance_count": 0.026852706792851535,
+    "previous_failures": 0.011820072282397445
+  },
+  "is_simulated_model": true,
+  "trained_timestamp": "2026-10-19T14:43:48.011128"
+}
