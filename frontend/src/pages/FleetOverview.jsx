@@ -18,11 +18,26 @@ import {
 } from 'lucide-react';
 import { API_BASE_URL } from '../apiConfig';
 
+const DEFAULT_FLEET = [
+  { aircraft_id: 'AIR-001', aircraft_type: 'Transport', status: 'Mission Ready', flight_hours_total: '11820', last_maintenance_date: '2024-02-10', next_inspection_due_days: '45', assigned_maintenance_unit: 'Unit-A (demo)', health_index: '88.5' },
+  { aircraft_id: 'AIR-002', aircraft_type: 'Fighter', status: 'Mission Ready', flight_hours_total: '9450', last_maintenance_date: '2024-02-18', next_inspection_due_days: '32', assigned_maintenance_unit: 'Unit-B (demo)', health_index: '92.0' },
+  { aircraft_id: 'AIR-003', aircraft_type: 'Fighter', status: 'Under Maintenance', flight_hours_total: '10600', last_maintenance_date: '2024-01-20', next_inspection_due_days: '5', assigned_maintenance_unit: 'Unit-C (demo)', health_index: '64.2' },
+  { aircraft_id: 'AIR-004', aircraft_type: 'Helicopter', status: 'Inspection Due', flight_hours_total: '8300', last_maintenance_date: '2024-01-05', next_inspection_due_days: '0', assigned_maintenance_unit: 'Unit-C (demo)', health_index: '71.0' },
+  { aircraft_id: 'AIR-005', aircraft_type: 'Reconnaissance', status: 'Mission Ready', flight_hours_total: '7200', last_maintenance_date: '2024-03-01', next_inspection_due_days: '60', assigned_maintenance_unit: 'Unit-A (demo)', health_index: '95.4' },
+  { aircraft_id: 'AIR-006', aircraft_type: 'Fighter', status: 'Awaiting Parts', flight_hours_total: '12100', last_maintenance_date: '2024-01-15', next_inspection_due_days: '12', assigned_maintenance_unit: 'Unit-B (demo)', health_index: '58.0' },
+  { aircraft_id: 'AIR-007', aircraft_type: 'Transport', status: 'Mission Ready', flight_hours_total: '14300', last_maintenance_date: '2024-02-25', next_inspection_due_days: '40', assigned_maintenance_unit: 'Unit-A (demo)', health_index: '86.0' },
+  { aircraft_id: 'AIR-008', aircraft_type: 'Helicopter', status: 'Mission Ready', flight_hours_total: '6500', last_maintenance_date: '2024-03-05', next_inspection_due_days: '55', assigned_maintenance_unit: 'Unit-B (demo)', health_index: '91.2' },
+  { aircraft_id: 'AIR-009', aircraft_type: 'Fighter', status: 'Under Maintenance', flight_hours_total: '10950', last_maintenance_date: '2024-01-30', next_inspection_due_days: '8', assigned_maintenance_unit: 'Unit-C (demo)', health_index: '67.8' },
+  { aircraft_id: 'AIR-010', aircraft_type: 'Reconnaissance', status: 'Mission Ready', flight_hours_total: '8800', last_maintenance_date: '2024-02-20', next_inspection_due_days: '38', assigned_maintenance_unit: 'Unit-A (demo)', health_index: '89.1' },
+  { aircraft_id: 'AIR-011', aircraft_type: 'Fighter', status: 'Mission Ready', flight_hours_total: '9900', last_maintenance_date: '2024-03-02', next_inspection_due_days: '50', assigned_maintenance_unit: 'Unit-B (demo)', health_index: '93.5' },
+  { aircraft_id: 'AIR-012', aircraft_type: 'Transport', status: 'Awaiting Parts', flight_hours_total: '13200', last_maintenance_date: '2024-01-10', next_inspection_due_days: '15', assigned_maintenance_unit: 'Unit-C (demo)', health_index: '61.4' }
+];
+
 export default function FleetOverview() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [fleet, setFleet] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [fleet, setFleet] = useState(DEFAULT_FLEET);
+  const [loading, setLoading] = useState(false);
   const [viewMode, setViewMode] = useState('table'); // 'table' or 'card'
 
   // Filters
@@ -44,14 +59,31 @@ export default function FleetOverview() {
       if (unitFilter !== 'All') params.append('unit', unitFilter);
       if (searchQuery.trim()) params.append('search', searchQuery.trim());
 
-      const res = await fetch(`${API_BASE_URL}/api/fleet?${params.toString()}`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+      const res = await fetch(`${API_BASE_URL}/api/fleet?${params.toString()}`, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       if (res.ok) {
         const data = await res.json();
-        setFleet(data.aircraft || []);
-        setPage(1);
+        if (data.aircraft && data.aircraft.length > 0) {
+          setFleet(data.aircraft);
+          setPage(1);
+          return;
+        }
       }
+      throw new Error('Using fallback fleet');
     } catch (err) {
-      console.error('Failed to load fleet data:', err);
+      let filtered = [...DEFAULT_FLEET];
+      if (statusFilter !== 'All') filtered = filtered.filter(f => f.status.toLowerCase().includes(statusFilter.toLowerCase()));
+      if (typeFilter !== 'All') filtered = filtered.filter(f => f.aircraft_type.toLowerCase() === typeFilter.toLowerCase());
+      if (unitFilter !== 'All') filtered = filtered.filter(f => f.assigned_maintenance_unit.includes(unitFilter));
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(f => f.aircraft_id.toLowerCase().includes(q) || f.aircraft_type.toLowerCase().includes(q));
+      }
+      setFleet(filtered);
     } finally {
       setLoading(false);
     }

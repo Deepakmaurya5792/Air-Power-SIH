@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Box,
   Cpu,
@@ -9,6 +10,7 @@ import {
   ChevronRight,
   Info
 } from 'lucide-react';
+
 
 export default function DigitalTwin() {
   const [selectedSubsystem, setSelectedSubsystem] = useState('turbofan');

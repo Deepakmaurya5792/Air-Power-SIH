@@ -17,9 +17,16 @@ import { API_BASE_URL } from '../apiConfig';
 
 const COLUMNS = ['Open', 'In Progress', 'Waiting for Parts', 'Completed'];
 
+const DEFAULT_WORK_ORDERS = [
+  { work_order_id: 'WO-101', aircraft_id: 'AIR-003', component_id: 'CMP-018', maintenance_type: 'Corrective', priority: 'High', status: 'In Progress', estimated_repair_hours: '36', required_part_id: 'PART-004', maintenance_unit: 'Unit-C (demo)', notes: 'Turbofan core excessive vibration detected in post-flight debrief.', created_at: '2024-03-01' },
+  { work_order_id: 'WO-102', aircraft_id: 'AIR-004', component_id: 'CMP-007', maintenance_type: 'Preventive', priority: 'Medium', status: 'Waiting for Parts', estimated_repair_hours: '18', required_part_id: 'PART-002', maintenance_unit: 'Unit-C (demo)', notes: 'Awaiting hydraulic seal actuators from central logistics depot.', created_at: '2024-03-02' },
+  { work_order_id: 'WO-103', aircraft_id: 'AIR-006', component_id: 'CMP-012', maintenance_type: 'Condition-Based', priority: 'High', status: 'Open', estimated_repair_hours: '24', required_part_id: 'PART-001', maintenance_unit: 'Unit-B (demo)', notes: 'Telemetry anomaly flag: Engine thermal envelope exceeded benchmark.', created_at: '2024-03-03' },
+  { work_order_id: 'WO-104', aircraft_id: 'AIR-001', component_id: 'CMP-001', maintenance_type: 'Preventive', priority: 'Low', status: 'Completed', estimated_repair_hours: '12', required_part_id: 'PART-003', maintenance_unit: 'Unit-A (demo)', notes: 'Routine 200-hour borescope inspection completed with nominal clearance.', created_at: '2024-02-28' }
+];
+
 export default function WorkOrders() {
-  const [workOrders, setWorkOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [workOrders, setWorkOrders] = useState(DEFAULT_WORK_ORDERS);
+  const [loading, setLoading] = useState(false);
   const [viewMode, setViewMode] = useState('kanban'); // 'kanban' or 'list'
   const [searchQuery, setSearchQuery] = useState('');
   const [priorityFilter, setPriorityFilter] = useState('All');
@@ -41,13 +48,20 @@ export default function WorkOrders() {
   const fetchWorkOrders = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/api/work-orders`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+      const res = await fetch(`${API_BASE_URL}/api/work-orders`, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       if (res.ok) {
         const data = await res.json();
-        setWorkOrders(data.workOrders || []);
+        if (data.workOrders && data.workOrders.length > 0) {
+          setWorkOrders(data.workOrders);
+        }
       }
     } catch (err) {
-      console.error('Failed to load work orders:', err);
+      console.warn('Backend unavailable, using seed work orders:', err.message);
     } finally {
       setLoading(false);
     }

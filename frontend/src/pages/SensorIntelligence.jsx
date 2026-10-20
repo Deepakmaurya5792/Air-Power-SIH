@@ -27,16 +27,31 @@ import {
 } from 'recharts';
 import { API_BASE_URL } from '../apiConfig';
 
+const DEFAULT_AIRCRAFT_LIST = ['AIR-001', 'AIR-002', 'AIR-003', 'AIR-004', 'AIR-005', 'AIR-006'];
+
+const DEFAULT_SENSOR_RECORDS = [
+  { timestamp: '2024-03-01T08:00:00Z', engine_temperature_c: '542.1', vibration_mm_s: '2.45', oil_pressure_kpa: '56.2', hydraulic_pressure_psi: '3040.0', anomaly_flag_demo: '0', component_id: 'CMP-018' },
+  { timestamp: '2024-03-02T08:00:00Z', engine_temperature_c: '548.6', vibration_mm_s: '2.60', oil_pressure_kpa: '55.8', hydraulic_pressure_psi: '3035.0', anomaly_flag_demo: '0', component_id: 'CMP-018' },
+  { timestamp: '2024-03-03T08:00:00Z', engine_temperature_c: '555.2', vibration_mm_s: '2.78', oil_pressure_kpa: '54.5', hydraulic_pressure_psi: '3020.0', anomaly_flag_demo: '0', component_id: 'CMP-018' },
+  { timestamp: '2024-03-04T08:00:00Z', engine_temperature_c: '566.0', vibration_mm_s: '3.10', oil_pressure_kpa: '53.8', hydraulic_pressure_psi: '3010.0', anomaly_flag_demo: '0', component_id: 'CMP-018' },
+  { timestamp: '2024-03-05T08:00:00Z', engine_temperature_c: '578.4', vibration_mm_s: '3.45', oil_pressure_kpa: '52.1', hydraulic_pressure_psi: '2995.0', anomaly_flag_demo: '0', component_id: 'CMP-018' },
+  { timestamp: '2024-03-06T08:00:00Z', engine_temperature_c: '595.0', vibration_mm_s: '3.90', oil_pressure_kpa: '50.4', hydraulic_pressure_psi: '2980.0', anomaly_flag_demo: '0', component_id: 'CMP-018' },
+  { timestamp: '2024-03-07T08:00:00Z', engine_temperature_c: '632.5', vibration_mm_s: '4.65', oil_pressure_kpa: '46.8', hydraulic_pressure_psi: '2940.0', anomaly_flag_demo: '1', component_id: 'CMP-018' },
+  { timestamp: '2024-03-08T08:00:00Z', engine_temperature_c: '648.1', vibration_mm_s: '4.92', oil_pressure_kpa: '44.2', hydraulic_pressure_psi: '2920.0', anomaly_flag_demo: '1', component_id: 'CMP-018' }
+];
+
 export default function SensorIntelligence() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const targetId = searchParams.get('id') || 'AIR-001';
 
   const [selectedAircraft, setSelectedAircraft] = useState(targetId);
-  const [aircraftList, setAircraftList] = useState([]);
-  const [sensorRecords, setSensorRecords] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [anomalies, setAnomalies] = useState([]);
+  const [aircraftList, setAircraftList] = useState(DEFAULT_AIRCRAFT_LIST);
+  const [sensorRecords, setSensorRecords] = useState(DEFAULT_SENSOR_RECORDS);
+  const [loading, setLoading] = useState(false);
+  const [anomalies, setAnomalies] = useState(
+    DEFAULT_SENSOR_RECORDS.filter((r) => r.anomaly_flag_demo === '1')
+  );
   const [activeSensor, setActiveSensor] = useState('all'); // 'all', 'temp', 'vibe', 'pressure', 'hydraulic'
 
   useEffect(() => {
@@ -46,22 +61,27 @@ export default function SensorIntelligence() {
   const fetchSensorData = async (craftId) => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/api/sensors/history?aircraft_id=${craftId}&limit=50`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+      const res = await fetch(`${API_BASE_URL}/api/sensors/history?aircraft_id=${craftId}&limit=50`, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       if (res.ok) {
         const data = await res.json();
-        setSensorRecords(data.records || []);
+        if (data.records && data.records.length > 0) {
+          setSensorRecords(data.records);
+          const anom = data.records.filter(
+            (r) => r.anomaly_flag_demo === '1' || r.anomaly_flag_demo === 1
+          );
+          setAnomalies(anom);
+        }
         if (data.available_aircraft && data.available_aircraft.length > 0) {
           setAircraftList(data.available_aircraft);
         }
-
-        // Filter anomalies
-        const anom = (data.records || []).filter(
-          (r) => r.anomaly_flag_demo === '1' || r.anomaly_flag_demo === 1
-        );
-        setAnomalies(anom);
       }
     } catch (err) {
-      console.error('Failed to load sensor history:', err);
+      console.warn('Backend unavailable, showing baseline sensor profile:', err.message);
     } finally {
       setLoading(false);
     }

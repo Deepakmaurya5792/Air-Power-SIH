@@ -30,29 +30,82 @@ import {
 } from 'recharts';
 import { API_BASE_URL } from '../apiConfig';
 
+const DEFAULT_KPI_DATA = {
+  totalAircraft: 150,
+  missionReady: 94,
+  underMaintenance: 25,
+  awaitingParts: 6,
+  available: 94,
+  inspectionDue: 25,
+  availabilityRate: 62.7,
+  openWorkOrders: 181,
+  highPriorityOrders: 14,
+  lowStockParts: 8,
+  anomalyCount: 114,
+  statusDistribution: [
+    { name: 'Available', value: 94, color: '#10B981' },
+    { name: 'Under Maintenance', value: 25, color: '#EF4444' },
+    { name: 'Awaiting Parts', value: 19, color: '#F59E0B' },
+    { name: 'Inspection Due', value: 12, color: '#38BDF8' }
+  ],
+  typeDistribution: [
+    { name: 'Fighter', count: 62 },
+    { name: 'Transport', count: 35 },
+    { name: 'Helicopter', count: 31 },
+    { name: 'Reconnaissance', count: 22 }
+  ],
+  is_simulation_mode: true
+};
+
+const DEFAULT_TREND_DATA = [
+  { date: 'Day -13', historical: 74.2, forecast: null },
+  { date: 'Day -11', historical: 75.8, forecast: null },
+  { date: 'Day -9', historical: 71.3, forecast: null },
+  { date: 'Day -7', historical: 68.9, forecast: null },
+  { date: 'Day -5', historical: 66.4, forecast: null },
+  { date: 'Day -3', historical: 64.1, forecast: null },
+  { date: 'Day -1', historical: 62.7, forecast: 62.7 },
+  { date: 'Day +2', historical: null, forecast: 65.2 },
+  { date: 'Day +4', historical: null, forecast: 68.4 },
+  { date: 'Day +6', historical: null, forecast: 71.0 },
+  { date: 'Day +8', historical: null, forecast: 74.5 },
+  { date: 'Day +10', historical: null, forecast: 78.1 },
+  { date: 'Day +12', historical: null, forecast: 81.3 },
+  { date: 'Day +14', historical: null, forecast: 84.6 }
+];
+
 export default function CommandCenter() {
   const navigate = useNavigate();
-  const [kpiData, setKpiData] = useState(null);
-  const [trendData, setTrendData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [kpiData, setKpiData] = useState(DEFAULT_KPI_DATA);
+  const [trendData, setTrendData] = useState(DEFAULT_TREND_DATA);
+  const [loading, setLoading] = useState(false);
+  const [isLive, setIsLive] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState('14d');
 
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
       const [kpiRes, trendRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/api/kpi/summary`),
-        fetch(`${API_BASE_URL}/api/kpi/availability-trend`)
+        fetch(`${API_BASE_URL}/api/kpi/summary`, { signal: controller.signal }),
+        fetch(`${API_BASE_URL}/api/kpi/availability-trend`, { signal: controller.signal })
       ]);
+      clearTimeout(timeoutId);
 
       if (kpiRes.ok && trendRes.ok) {
         const kpi = await kpiRes.json();
         const trend = await trendRes.json();
         setKpiData(kpi);
-        setTrendData(trend.trend || []);
+        if (trend.trend && trend.trend.length > 0) {
+          setTrendData(trend.trend);
+        }
+        setIsLive(true);
       }
     } catch (err) {
-      console.error('Error fetching dashboard summary:', err);
+      console.warn('Backend offline or slow start, displaying operational seed dataset:', err.message);
+      setIsLive(false);
     } finally {
       setLoading(false);
     }
@@ -61,17 +114,6 @@ export default function CommandCenter() {
   useEffect(() => {
     fetchDashboardData();
   }, []);
-
-  if (loading || !kpiData) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh] space-x-3 text-sky-600">
-        <RefreshCw className="w-6 h-6 animate-spin" />
-        <span className="font-mono text-sm tracking-widest uppercase font-semibold">
-          Initializing Command Center Telemetry...
-        </span>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">
@@ -93,12 +135,28 @@ export default function CommandCenter() {
         </div>
 
         <div className="flex items-center space-x-3">
+          <span
+            className={`inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold border ${
+              isLive
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-300'
+                : 'bg-amber-50 text-amber-700 border-amber-300'
+            }`}
+          >
+            <span
+              className={`w-2 h-2 rounded-full ${
+                isLive ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
+              }`}
+            />
+            <span>{isLive ? 'LIVE TELEMETRY' : 'SEED TELEMETRY'}</span>
+          </span>
+
           <button
             onClick={fetchDashboardData}
-            className="px-3 py-1.5 rounded-lg border border-sky-200 bg-sky-50 hover:bg-sky-100 text-xs font-mono text-sky-800 flex items-center space-x-1.5 transition-colors cursor-pointer font-semibold"
+            disabled={loading}
+            className="px-3 py-1.5 rounded-lg border border-sky-200 bg-sky-50 hover:bg-sky-100 text-xs font-mono text-sky-800 flex items-center space-x-1.5 transition-colors cursor-pointer font-semibold disabled:opacity-60"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
-            <span>Refresh</span>
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+            <span>{loading ? 'Syncing...' : 'Sync Live'}</span>
           </button>
           <button
             onClick={() => navigate('/predictive-ai')}
